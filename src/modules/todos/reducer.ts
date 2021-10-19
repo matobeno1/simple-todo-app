@@ -1,5 +1,5 @@
 import { combineReducers, createEntityAdapter, createSlice, PayloadAction, Reducer, nanoid } from "@reduxjs/toolkit";
-import { Todo, ITodosState } from "./types";
+import { Todo, ITodosState, AddTodoActionPayloadType } from "./types";
 
 const todosAdapter = createEntityAdapter<Todo>({
 	selectId: todo => todo.todoId,
@@ -10,13 +10,13 @@ const todoSlice = createSlice({
 	initialState: todosAdapter.getInitialState(),
 	reducers: {
 		add: {
-			reducer: (state, action: PayloadAction<{title: string, todoId: string, completed: boolean}>) => {
+			reducer: (state, action: PayloadAction<AddTodoActionPayloadType>) => {
 				if (!action.payload.title) {
 					return;
 				}
 				todosAdapter.addOne(state, action);
 			},
-			prepare: (payload: {title: string}) => {
+			prepare: (payload: Pick<AddTodoActionPayloadType, "title">) => {
 				const todoId = nanoid();
 				return { payload: { todoId, title: payload.title, completed: false } };
 			},
