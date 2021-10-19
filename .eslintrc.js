@@ -38,6 +38,9 @@ module.exports = {
 			"error",
 			"always"
 		],
-		"object-curly-spacing": ["error", "always"]
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+		"object-curly-spacing": ["error", "always"],
+		"no-multiple-empty-lines": ["error", { "max": 1 }]
 	}
 };

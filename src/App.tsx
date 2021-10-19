@@ -1,11 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
-function App() {
-	return (
-		<div className="App">
-			<h1>Hello</h1>
-		</div>
-	);
-}
+const App: FunctionComponent = () => (
+	<div className="App">
+		<h1>Hello</h1>
+	</div>
+);
 
 export default App;
