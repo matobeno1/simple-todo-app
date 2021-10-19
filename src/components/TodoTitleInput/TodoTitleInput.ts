@@ -1,11 +1,12 @@
 import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 
+import { NoneProps } from "@src/types";
 import { TodoTitleInputComponent, TodoTitleInputComponentProps } from "../TodoTitleInputComponent";
 import { IRootState } from "../../store/types";
 import { createAddTodoAction, createChangeNewTodoTitleAction } from "../../modules/todos";
 import { getNewTodoTitle } from "../../modules/todos";
 
-type TodoTitleInputProps = Record<string, never>;
+type TodoTitleInputProps = NoneProps;
 type StateProps = Pick<TodoTitleInputComponentProps, "title">;
 type DispatchProps = Pick<TodoTitleInputComponentProps, "onChange" | "onSubmit">;
 

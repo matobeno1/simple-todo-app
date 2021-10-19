@@ -2,13 +2,14 @@ import { TodosListComponent, TodosListComponentProps } from "../TodosListCompone
 
 import { connect, MapStateToProps } from "react-redux";
 
+import { NoneProps } from "@src/types";
 import { IRootState } from "../../store/types";
 import { getTodosIds } from "../../modules/todos";
 
-type TodoTitleInputProps = Record<string, never>;
+type TodosListProps = NoneProps;
 type StateProps = Pick<TodosListComponentProps, "todosIds">;
 
-const mapStateToProps: MapStateToProps<StateProps,TodoTitleInputProps, IRootState> = (state) => ({
+const mapStateToProps: MapStateToProps<StateProps, TodosListProps, IRootState> = (state) => ({
 	todosIds: getTodosIds(state)
 });
 
