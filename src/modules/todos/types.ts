@@ -6,7 +6,7 @@ export type Todo = {
 	completed: boolean;
 };
 
-export type TodosState = {
+export interface ITodosState {
 	todos: EntityState<Todo>,
 	newTodoTitle: string,
-};
+}

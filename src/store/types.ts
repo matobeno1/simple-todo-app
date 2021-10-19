@@ -1,5 +1,5 @@
-import { TodosState } from "../modules/todos";
+import { ITodosState } from "../modules/todos";
 
 export interface IRootState {
-	todos: TodosState
+	todos: ITodosState
 }

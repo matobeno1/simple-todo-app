@@ -1,7 +1,7 @@
 import { Selector } from "react-redux";
 import { IRootState } from "../../store/types";
-import { TodosState } from "./types";
+import { ITodosState } from "./types";
 
-export const getModel: Selector<IRootState, TodosState> = (state) => state.todos;
+export const getModel: Selector<IRootState, ITodosState> = (state) => state.todos;
 
 export const getNewTodoTitle: Selector<IRootState, string> = (state) => getModel(state).newTodoTitle;

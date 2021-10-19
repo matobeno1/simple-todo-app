@@ -1,5 +1,5 @@
 import { combineReducers, createEntityAdapter, createSlice, PayloadAction, Reducer } from "@reduxjs/toolkit";
-import { Todo, TodosState } from "./types";
+import { Todo, ITodosState } from "./types";
 
 const todosAdapter = createEntityAdapter<Todo>({
 	selectId: todo => todo.todoId,
@@ -17,11 +17,11 @@ const newTodoTitle = createSlice({
 	name: "newTodoTitle",
 	initialState: "",
 	reducers: {
-		change: (state, action: PayloadAction<{title: string}>) => action.payload.title
+		change: (state, action: PayloadAction<{title: string}>) => action.payload.title,
 	}
 });
 
-export const reducer: Reducer<TodosState> = combineReducers({
+export const reducer: Reducer<ITodosState> = combineReducers({
 	todos: todoSlice.reducer,
 	newTodoTitle: newTodoTitle.reducer,
 });

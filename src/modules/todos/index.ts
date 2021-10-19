@@ -3,4 +3,4 @@ export {
 	createAddTodoAction,
 	createChangeNewTodoTitleAction,
 } from "./reducer";
-export type { TodosState } from "./types";
+export type { ITodosState } from "./types";
