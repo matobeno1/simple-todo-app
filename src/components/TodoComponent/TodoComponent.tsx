@@ -3,8 +3,8 @@ import classes from "./TodoComponent.module.css";
 import classNames from "classnames";
 
 export type TodoComponentProps = {
-	/** Text of the todo. */
-	text?: string;
+	/** Title of the todo. */
+	title?: string;
 	/** Flag, whether the todo is completed or not. */
 	completed?: boolean;
 	/** Flag, whether the todo is being edited. */
@@ -13,8 +13,8 @@ export type TodoComponentProps = {
 }
 
 export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
-	text = "",
-	completed = true,
+	title = "",
+	completed = false,
 	editing = false,
 	onCheck,
 }) => {
@@ -32,7 +32,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					checked={completed}
 					onChange={handleCheck}
 				/>
-				<label htmlFor="">{text}</label>
+				<label htmlFor="">{title}</label>
 			</div>
 		</div>
 	);

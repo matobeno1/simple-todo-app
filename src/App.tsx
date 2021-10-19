@@ -5,7 +5,7 @@ import classes from "./App.module.css";
 const App: FunctionComponent = () => (
 	<div className={classes.root}>
 		<h1>Hello</h1>
-		<TodoComponent text={"Hello"} />
+		<TodoComponent title={"Hello"} />
 	</div>
 );
 
