@@ -10,7 +10,12 @@ const todoSlice = createSlice({
 	initialState: todosAdapter.getInitialState(),
 	reducers: {
 		add: {
-			reducer: todosAdapter.addOne,
+			reducer: (state, action: PayloadAction<{title: string, todoId: string, completed: boolean}>) => {
+				if (!action.payload.title) {
+					return;
+				}
+				todosAdapter.addOne(state, action);
+			},
 			prepare: (payload: {title: string}) => {
 				const todoId = nanoid();
 				return { payload: { todoId, title: payload.title, completed: false } };
