@@ -1,6 +1,6 @@
 import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 
-import { NoneProps } from "@src/types";
+import { NoneProps } from "../../types";
 import { TodoTitleInputComponent, TodoTitleInputComponentProps } from "../TodoTitleInputComponent";
 import { IRootState } from "../../store/types";
 import { createAddTodoAction, createChangeNewTodoTitleAction } from "../../modules/todos";

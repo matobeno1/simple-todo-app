@@ -2,7 +2,7 @@ import { TodosListComponent, TodosListComponentProps } from "../TodosListCompone
 
 import { connect, MapStateToProps } from "react-redux";
 
-import { NoneProps } from "@src/types";
+import { NoneProps } from "../../types";
 import { IRootState } from "../../store/types";
 import { getTodosIds } from "../../modules/todos";
 
