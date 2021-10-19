@@ -29,6 +29,9 @@ const newTodoTitle = createSlice({
 	initialState: "",
 	reducers: {
 		change: (state, action: PayloadAction<{title: string}>) => action.payload.title,
+	},
+	extraReducers: (builder) => {
+		builder.addCase(todoSlice.actions.add, () => "");
 	}
 });
 

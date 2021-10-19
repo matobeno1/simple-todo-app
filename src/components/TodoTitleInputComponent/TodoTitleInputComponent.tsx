@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ChangeEventHandler, KeyboardEventHandler } from "react";
+import React, { FunctionComponent, ChangeEventHandler, KeyboardEventHandler, useRef } from "react";
 
 export type TodoTitleInputComponentProps = Readonly<{
 	title: string;
@@ -11,11 +11,13 @@ export const TodoTitleInputComponent: FunctionComponent<TodoTitleInputComponentP
 	onChange,
 	onSubmit,
 }) => {
+	const ref = useRef<HTMLInputElement>(null);
 	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		onChange(e.target.value);
 	};
 	const handleSubmit = () => {
 		title && onSubmit(title);
+		ref.current?.focus();
 	};
 	const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = (e) => {
 		if (e.key === "Enter") {
@@ -25,7 +27,14 @@ export const TodoTitleInputComponent: FunctionComponent<TodoTitleInputComponentP
 
 	return (
 		<div>
-			<input onKeyPress={handleKeyPress} value={title} onChange={handleChange} type="text"/>
+			<input
+				type="text"
+				required={true}
+				ref={ref}
+				value={title}
+				onKeyPress={handleKeyPress}
+				onChange={handleChange}
+			/>
 			<button onClick={handleSubmit}>Create</button>
 		</div>
 	);
