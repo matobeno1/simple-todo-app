@@ -10,7 +10,7 @@ export type TodoComponentProps = {
 	/** Flag, whether the todo is being edited. */
 	editing?: boolean;
 	onCheck?: () => void;
-}
+};
 
 export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 	title = "",

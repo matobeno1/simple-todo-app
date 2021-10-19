@@ -1,4 +1,4 @@
-import { combineReducers, createEntityAdapter, createSlice, PayloadAction, Reducer } from "@reduxjs/toolkit";
+import { combineReducers, createEntityAdapter, createSlice, PayloadAction, Reducer, nanoid } from "@reduxjs/toolkit";
 import { Todo, ITodosState } from "./types";
 
 const todosAdapter = createEntityAdapter<Todo>({
@@ -9,7 +9,13 @@ const todoSlice = createSlice({
 	name: "todos",
 	initialState: todosAdapter.getInitialState(),
 	reducers: {
-		add: todosAdapter.addOne
+		add: {
+			reducer: todosAdapter.addOne,
+			prepare: (payload: {title: string}) => {
+				const todoId = nanoid();
+				return { payload: { todoId, title: payload.title, completed: false } };
+			},
+		}
 	}
 });
 
