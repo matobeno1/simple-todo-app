@@ -1,27 +1,20 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import classes from "./TodoComponent.module.css";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 export type TodoComponentProps = PropsWithChildren<{
-	isComplete?: boolean;
+	completed?: boolean;
 }>
 
-const styles = {
-	isComplete: classes.complete
-};
-
-const cx = classNames.bind(styles);
-
 export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
-	isComplete = false,
+	completed = true,
+	children,
 }) => {
 	return (
-		<div className={
-			cx({
-				isComplete,
-			})
-		}>
-			{isComplete ? "complete" : "incomplete"}
+		<div className={classNames(classes.root, {
+			[classes.completed]: completed,
+		})}>
+			{children}
 		</div>
 	);
 };
