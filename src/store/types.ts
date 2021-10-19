@@ -1,5 +1,5 @@
 import { TodosState } from "../modules/todos";
 
-export type RootState = {
+export interface IRootState {
 	todos: TodosState
-};
+}

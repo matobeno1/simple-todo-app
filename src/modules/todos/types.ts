@@ -6,4 +6,7 @@ export type Todo = {
 	completed: boolean;
 };
 
-export type TodosState = EntityState<Todo>;
+export type TodosState = {
+	todos: EntityState<Todo>,
+	newTodoTitle: string,
+};
