@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FunctionComponent, PropsWithChildren } from "react";
+import React, { ChangeEventHandler, FunctionComponent } from "react";
 import classes from "./TodoComponent.module.css";
 import classNames from "classnames";
 
