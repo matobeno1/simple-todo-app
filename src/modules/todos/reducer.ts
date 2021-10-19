@@ -38,3 +38,5 @@ export const {
 export const {
 	change: createChangeNewTodoTitleAction
 } = newTodoTitle.actions;
+
+export const todosSelectors = todosAdapter.getSelectors();
