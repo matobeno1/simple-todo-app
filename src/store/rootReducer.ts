@@ -1,3 +1,8 @@
-import { Reducer } from "@reduxjs/toolkit";
+import { combineReducers, Reducer } from "@reduxjs/toolkit";
 
-export const rootReducer: Reducer = (state = null, _action) => state;
+import { reducer as todosReducer } from "../modules/todos";
+import { RootState } from "./types";
+
+export const rootReducer: Reducer<RootState> = combineReducers({
+	todos: todosReducer,
+});
