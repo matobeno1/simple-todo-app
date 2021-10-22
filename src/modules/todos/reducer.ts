@@ -59,6 +59,10 @@ const todoSlice = createSlice({
 					title,
 				}
 			});
+		},
+		delete: (state, action: PayloadAction<{todoId: EntityId}>) => {
+			const { todoId } = action.payload;
+			todosAdapter.removeOne(state, todoId);
 		}
 	}
 });
@@ -83,6 +87,7 @@ export const {
 	add: createAddTodoAction,
 	toggleComplete: createToggleCompleteAction,
 	changeTitle: createChangeTitleAction,
+	delete: createDeleteTodoAction,
 } = todoSlice.actions;
 export const {
 	change: createChangeNewTodoTitleAction

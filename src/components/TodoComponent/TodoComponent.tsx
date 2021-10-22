@@ -19,6 +19,7 @@ export type TodoComponentProps = {
 	onCheck?: () => void;
 	/** Function called when the edit title is changed. */
 	onEdit?: (title: string) => void;
+	onDelete?: () => void;
 };
 
 export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
@@ -26,6 +27,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 	completed = false,
 	onCheck,
 	onEdit,
+	onDelete,
 }) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editedTitle, setEditedTitle] = useState(title);
@@ -97,6 +99,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					</span>
 				)}
 			</div>
+			<button onClick={onDelete}>x</button>
 		</div>
 	);
 };
