@@ -1,5 +1,11 @@
 import { EntityState } from "@reduxjs/toolkit";
 
+export enum TodoFilter {
+	ALL = "all",
+	COMPLETE = "complete",
+	INCOMPLETE = "incomplete",
+}
+
 export type Todo = {
 	todoId: string;
 	title: string;
@@ -9,6 +15,7 @@ export type Todo = {
 export interface ITodosState {
 	todos: EntityState<Todo>,
 	newTodoTitle: string,
+	activeFilter: TodoFilter
 }
 
 export type AddTodoActionPayloadType = {

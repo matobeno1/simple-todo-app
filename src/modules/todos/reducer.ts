@@ -7,7 +7,7 @@ import {
 	nanoid,
 	EntityId
 } from "@reduxjs/toolkit";
-import { Todo, ITodosState, AddTodoActionPayloadType } from "./types";
+import { Todo, ITodosState, AddTodoActionPayloadType, TodoFilter } from "./types";
 
 const todosAdapter = createEntityAdapter<Todo>({
 	selectId: todo => todo.todoId,
@@ -78,9 +78,18 @@ const newTodoTitle = createSlice({
 	}
 });
 
+const activeFilter = createSlice({
+	name: "activeFilter",
+	initialState: TodoFilter.ALL,
+	reducers: {
+		set: (state, action: PayloadAction<{filterValue: TodoFilter}>) => action.payload.filterValue
+	}
+});
+
 export const reducer: Reducer<ITodosState> = combineReducers({
 	todos: todoSlice.reducer,
 	newTodoTitle: newTodoTitle.reducer,
+	activeFilter: activeFilter.reducer,
 });
 
 export const {
@@ -92,5 +101,8 @@ export const {
 export const {
 	change: createChangeNewTodoTitleAction
 } = newTodoTitle.actions;
+export const {
+	set: createSetActiveFilterAction
+} = activeFilter.actions;
 
 export const todosSelectors = todosAdapter.getSelectors();

@@ -5,6 +5,7 @@ export {
 	createToggleCompleteAction,
 	createChangeTitleAction,
 	createDeleteTodoAction,
+	createSetActiveFilterAction,
 } from "./reducer";
 export {
 	getModel,
