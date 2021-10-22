@@ -2,7 +2,7 @@ import { Selector } from "react-redux";
 
 import { todosSelectors } from "./reducer";
 import { IRootState } from "../../store/types";
-import { ITodosState, Todo } from "./types";
+import { ITodosState, Todo, TodoFilter } from "./types";
 import { EntityId, EntityState } from "@reduxjs/toolkit";
 
 export const getModel: Selector<IRootState, ITodosState> = (state) => state.todos;
@@ -20,3 +20,5 @@ export const getTodoById: Selector<IRootState, Todo, {todoId: EntityId}> = (stat
 	}
 	throw new Error(`Todo with the id of ${todoId} was not found.`);
 };
+
+export const getActiveTodoFilter: Selector<IRootState, TodoFilter> = (state) => getModel(state).activeFilter;
