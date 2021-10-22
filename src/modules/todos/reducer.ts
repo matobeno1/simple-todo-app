@@ -13,9 +13,19 @@ const todosAdapter = createEntityAdapter<Todo>({
 	selectId: todo => todo.todoId,
 });
 
+const emptyInitialState = todosAdapter.getInitialState();
+const defaultTodos: [Todo] = [
+	{
+		todoId: nanoid(),
+		title: "Hello",
+		completed: false,
+	}
+];
+const filledState = todosAdapter.upsertMany(emptyInitialState, defaultTodos);
+
 const todoSlice = createSlice({
 	name: "todos",
-	initialState: todosAdapter.getInitialState(),
+	initialState: filledState,
 	reducers: {
 		add: {
 			reducer: (state, action: PayloadAction<AddTodoActionPayloadType>) => {
@@ -40,6 +50,15 @@ const todoSlice = createSlice({
 					}
 				});
 			}
+		},
+		changeTitle: (state, action: PayloadAction<{title: string, todoId: EntityId}>) => {
+			const { todoId, title } = action.payload;
+			todosAdapter.updateOne(state, {
+				id: todoId,
+				changes: {
+					title,
+				}
+			});
 		}
 	}
 });
@@ -63,6 +82,7 @@ export const reducer: Reducer<ITodosState> = combineReducers({
 export const {
 	add: createAddTodoAction,
 	toggleComplete: createToggleCompleteAction,
+	changeTitle: createChangeTitleAction,
 } = todoSlice.actions;
 export const {
 	change: createChangeNewTodoTitleAction

@@ -1,4 +1,12 @@
-import React, { ChangeEventHandler, FunctionComponent, MouseEventHandler } from "react";
+import React, {
+	ChangeEventHandler, FocusEventHandler,
+	FunctionComponent,
+	KeyboardEventHandler,
+	MouseEventHandler,
+	useEffect,
+	useRef,
+	useState
+} from "react";
 import classes from "./TodoComponent.module.css";
 import classNames from "classnames";
 
@@ -8,24 +16,57 @@ export type TodoComponentProps = {
 	/** Flag, whether the todo is completed or not. */
 	completed?: boolean;
 	/** Flag, whether the todo is being edited. */
-	editing?: boolean;
 	onCheck?: () => void;
-	onDoubleClick?: () => void;
+	/** Function called when the edit title is changed. */
+	onEdit?: (title: string) => void;
 };
 
 export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 	title = "",
 	completed = false,
-	editing = false,
 	onCheck,
-	onDoubleClick,
+	onEdit,
 }) => {
+	const [isEditing, setIsEditing] = useState(false);
+	const [editedTitle, setEditedTitle] = useState(title);
+	const ref = useRef<HTMLInputElement>(null);
+
 	const handleCheck: ChangeEventHandler<HTMLInputElement> = () => {
 		onCheck && onCheck();
 	};
 
+	const handleEditedTitleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+		if (e.key === "Escape") {
+			setIsEditing(false);
+			setEditedTitle(title);
+		}
+	};
+
+	const handleEditedTitleKeyPress: KeyboardEventHandler<HTMLInputElement> = (e) => {
+		if (e.key === "Enter") {
+			onEdit && onEdit(editedTitle);
+			setIsEditing(false);
+		}
+	};
+
 	const handleDoubleClick: MouseEventHandler<HTMLInputElement> = () => {
-		onDoubleClick && onDoubleClick();
+		setIsEditing(true);
+		setEditedTitle(title);
+	};
+
+	const handleEditedTitleBlur: FocusEventHandler<HTMLInputElement> = () => {
+		onEdit && onEdit(editedTitle);
+		setIsEditing(false);
+	};
+
+	useEffect(() => {
+		if (isEditing) {
+			ref.current?.focus();
+		}
+	}, [isEditing]);
+
+	const handleEditedTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+		setEditedTitle(e.target.value);
 	};
 
 	return (
@@ -38,11 +79,23 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					checked={completed}
 					onChange={handleCheck}
 				/>
-				<span
-					onDoubleClick={handleDoubleClick}
-				>
-					{title}
-				</span>
+				{isEditing ? (
+					<input
+						ref={ref}
+						type="text"
+						value={editedTitle}
+						onKeyDown={handleEditedTitleKeyDown}
+						onKeyPress={handleEditedTitleKeyPress}
+						onBlur={handleEditedTitleBlur}
+						onChange={handleEditedTitleChange}
+					/>
+				) : (
+					<span
+						onDoubleClick={handleDoubleClick}
+					>
+						{title}
+					</span>
+				)}
 			</div>
 		</div>
 	);

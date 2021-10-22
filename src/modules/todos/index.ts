@@ -3,6 +3,7 @@ export {
 	createAddTodoAction,
 	createChangeNewTodoTitleAction,
 	createToggleCompleteAction,
+	createChangeTitleAction,
 } from "./reducer";
 export {
 	getModel,
