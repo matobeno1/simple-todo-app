@@ -1,4 +1,12 @@
-import { combineReducers, createEntityAdapter, createSlice, PayloadAction, Reducer, nanoid } from "@reduxjs/toolkit";
+import {
+	combineReducers,
+	createEntityAdapter,
+	createSlice,
+	PayloadAction,
+	Reducer,
+	nanoid,
+	EntityId
+} from "@reduxjs/toolkit";
 import { Todo, ITodosState, AddTodoActionPayloadType } from "./types";
 
 const todosAdapter = createEntityAdapter<Todo>({
@@ -20,6 +28,18 @@ const todoSlice = createSlice({
 				const todoId = nanoid();
 				return { payload: { todoId, title: payload.title, completed: false } };
 			},
+		},
+		toggleComplete: (state, action: PayloadAction<{todoId: EntityId}>) => {
+			const { todoId } = action.payload;
+			const entity = state.entities[todoId];
+			if (entity) {
+				todosAdapter.updateOne(state, {
+					id: todoId,
+					changes: {
+						completed: !entity.completed,
+					}
+				});
+			}
 		}
 	}
 });
@@ -41,7 +61,8 @@ export const reducer: Reducer<ITodosState> = combineReducers({
 });
 
 export const {
-	add: createAddTodoAction
+	add: createAddTodoAction,
+	toggleComplete: createToggleCompleteAction,
 } = todoSlice.actions;
 export const {
 	change: createChangeNewTodoTitleAction

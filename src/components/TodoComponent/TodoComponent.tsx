@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FunctionComponent } from "react";
+import React, { ChangeEventHandler, FunctionComponent, MouseEventHandler } from "react";
 import classes from "./TodoComponent.module.css";
 import classNames from "classnames";
 
@@ -10,6 +10,7 @@ export type TodoComponentProps = {
 	/** Flag, whether the todo is being edited. */
 	editing?: boolean;
 	onCheck?: () => void;
+	onDoubleClick?: () => void;
 };
 
 export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
@@ -17,9 +18,14 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 	completed = false,
 	editing = false,
 	onCheck,
+	onDoubleClick,
 }) => {
 	const handleCheck: ChangeEventHandler<HTMLInputElement> = () => {
 		onCheck && onCheck();
+	};
+
+	const handleDoubleClick: MouseEventHandler<HTMLInputElement> = () => {
+		onDoubleClick && onDoubleClick();
 	};
 
 	return (
@@ -32,7 +38,11 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					checked={completed}
 					onChange={handleCheck}
 				/>
-				<label htmlFor="">{title}</label>
+				<span
+					onDoubleClick={handleDoubleClick}
+				>
+					{title}
+				</span>
 			</div>
 		</div>
 	);
