@@ -61,6 +61,12 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 		setIsEditing(false);
 	};
 
+	const handleTitleKeyPress: KeyboardEventHandler<HTMLInputElement> = (e) => {
+		if (e.key === "Enter") {
+			setIsEditing(true);
+		}
+	};
+
 	useEffect(() => {
 		if (isEditing) {
 			ref.current?.focus();
@@ -93,6 +99,8 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					/>
 				) : (
 					<span
+						tabIndex={0}
+						onKeyPress={handleTitleKeyPress}
 						onDoubleClick={handleDoubleClick}
 					>
 						{title}
