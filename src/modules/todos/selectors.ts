@@ -23,26 +23,53 @@ export const getTodoById: Selector<IRootState, Todo, {todoId: EntityId}> = (stat
 
 export const getActiveTodoFilter: Selector<IRootState, TodoFilter> = (state) => getModel(state).activeFilter;
 
-export const getFilteredTodosIds = createSelector<
+export const getCompleteTodosIds = createSelector<
 	IRootState,
-	ReturnType<typeof getActiveTodoFilter>,
 	ReturnType<typeof todosSelectors.selectAll>,
 	EntityId[]
 	>(
-		getActiveTodoFilter,
 		state => todosSelectors.selectAll(getTodosEntityState(state)),
-		(todoFilter, todos) => {
-			let result = todos;
-			switch (todoFilter) {
+		(todos) => (
+			todos.filter(todo => todo.completed).map(todo => todo.todoId)
+		)
+	);
+
+export const getIncompleteTodosIds = createSelector<
+	IRootState,
+	ReturnType<typeof todosSelectors.selectAll>,
+	EntityId[]
+	>(
+		state => todosSelectors.selectAll(getTodosEntityState(state)),
+		(todos) => (
+			todos.filter(todo => !todo.completed).map(todo => todo.todoId)
+		)
+	);
+
+export const getFilteredTodosIds = createSelector<
+	IRootState,
+	ReturnType<typeof getActiveTodoFilter>,
+	ReturnType<typeof getCompleteTodosIds>,
+	ReturnType<typeof getIncompleteTodosIds>,
+	ReturnType<typeof getTodosIds>,
+	EntityId[]
+	>(
+		getActiveTodoFilter,
+		getCompleteTodosIds,
+		getIncompleteTodosIds,
+		getTodosIds,
+		(
+			activeFilter,
+			completeTodosIds,
+			incompleteTodosIds,
+			allTodosIds
+		) => {
+			switch (activeFilter) {
 			case TodoFilter.COMPLETE:
-				result = todos.filter(todo => todo.completed);
-				break;
+				return completeTodosIds;
 			case TodoFilter.INCOMPLETE:
-				result = todos.filter(todo => !todo.completed);
-				break;
+				return incompleteTodosIds;
 			default:
-				break;
+				return allTodosIds;
 			}
-			return result.map(todo => todo.todoId);
 		}
 	);
