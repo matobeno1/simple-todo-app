@@ -4,13 +4,6 @@
   --typography-color: rgba(0, 0, 0, 0.87);
   --bg-color: #FDFDFD;
   --border-color: #000;
-
-  // Button
-  --button-active: rgba(0, 0, 0, 0.54);
-  --button-disabled: rgba(0, 0, 0, 0.26);
-  --button-hover: rgba(0, 0, 0, 0.04);
-  --button-selected: rgba(0, 0, 0, 0.08);
-  --button-background: rgb(239, 239, 239);
 }
 
 [data-theme="dark"] {
@@ -19,13 +12,6 @@
   --typography-color: #fff;
   --bg-color: #121212;
   --border-color: #3C424A;
-
-  // Button
-  --button-active: #fff;
-  --button-disabled: rgba(255, 255, 255, 0.3);
-  --button-hover: rgba(255, 255, 255, 0.08);
-  --button-selected: rgba(255, 255, 255, 0.16);
-  --button-background: rgb(118, 118, 118);
 }
 
 html {
@@ -33,10 +19,4 @@ html {
   color: var(--typography-color);
   background-color: var(--bg-color);
   transition: background-color 150ms linear;
-  font-size: 24px;
-}
-
-input[type="text"] {
-  color: var(--typography-color);
-  background-color: var(--bg-color);
 }
