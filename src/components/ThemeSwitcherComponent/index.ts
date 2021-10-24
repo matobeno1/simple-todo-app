@@ -1,0 +1,1 @@
+export { ThemeSwitcherComponent } from "./ThemeSwitcherComponent";
