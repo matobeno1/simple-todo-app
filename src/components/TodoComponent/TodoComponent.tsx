@@ -7,7 +7,7 @@ import React, {
 	useRef,
 	useState
 } from "react";
-import classes from "./TodoComponent.module.css";
+import classes from "./TodoComponent.module.scss";
 import classNames from "classnames";
 
 export type TodoComponentProps = {
@@ -78,15 +78,16 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 	};
 
 	return (
-		<div className={classNames(classes.root, {
-			[classes.completed]: completed,
-		})}>
-			<div>
-				<input
-					type="checkbox"
-					checked={completed}
-					onChange={handleCheck}
-				/>
+		<div className={classes.root}>
+			<input
+				className={classes.checkbox}
+				type="checkbox"
+				checked={completed}
+				onChange={handleCheck}
+			/>
+			<div className={classNames(classes.content, {
+				[classes.completed]: completed,
+			})}>
 				{isEditing ? (
 					<input
 						ref={ref}
@@ -107,7 +108,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					</span>
 				)}
 			</div>
-			<button onClick={onDelete}>x</button>
+			<button className={classes.closeButton} onClick={onDelete}>x</button>
 		</div>
 	);
 };
