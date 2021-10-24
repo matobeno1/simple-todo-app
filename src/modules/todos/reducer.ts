@@ -59,12 +59,16 @@ const todoSlice = createSlice({
 		},
 		changeTitle: (state, action: PayloadAction<{title: string, todoId: EntityId}>) => {
 			const { todoId, title } = action.payload;
-			todosAdapter.updateOne(state, {
-				id: todoId,
-				changes: {
-					title,
-				}
-			});
+			if (!title) {
+				todosAdapter.removeOne(state, todoId);
+			} else {
+				todosAdapter.updateOne(state, {
+					id: todoId,
+					changes: {
+						title,
+					}
+				});
+			}
 		},
 		delete: (state, action: PayloadAction<{todoId: EntityId}>) => {
 			const { todoId } = action.payload;
