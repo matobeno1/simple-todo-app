@@ -1,5 +1,7 @@
 import React, { FunctionComponent, ChangeEventHandler, KeyboardEventHandler, useRef } from "react";
 
+import classes from "./TodoTitleInputComponent.module.scss";
+
 export type TodoTitleInputComponentProps = Readonly<{
 	title: string;
 	onChange: (title: string) => void;
@@ -26,9 +28,11 @@ export const TodoTitleInputComponent: FunctionComponent<TodoTitleInputComponentP
 	};
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<input
 				type="text"
+				placeholder={"Add a task..."}
+				className={classes.input}
 				required={true}
 				ref={ref}
 				value={title}
