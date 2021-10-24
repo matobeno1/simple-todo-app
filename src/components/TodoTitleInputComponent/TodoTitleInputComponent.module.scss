@@ -1,8 +1,9 @@
 .root {
     display: flex;
+    margin: .5rem 0;
 }
 
 .input {
-    background: var(--primary-color);
     width: 100%;
+    padding: .5rem .25rem;
 }

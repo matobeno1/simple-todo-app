@@ -18,3 +18,8 @@ html {
   background-color: var(--bg-color);
   transition: background-color 150ms linear;
 }
+
+input[type="text"] {
+  color: var(--typography-color);
+  background-color: var(--bg-color);
+}

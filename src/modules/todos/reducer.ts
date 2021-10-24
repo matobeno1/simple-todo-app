@@ -14,13 +14,19 @@ const todosAdapter = createEntityAdapter<Todo>({
 });
 
 const emptyInitialState = todosAdapter.getInitialState();
-const defaultTodos: [Todo] = [
+const defaultTodos: Todo[] = [
 	{
 		todoId: nanoid(),
-		title: "Hello",
+		title: "Buy groceries",
 		completed: false,
+	},
+	{
+		todoId: nanoid(),
+		title: "Call Amy",
+		completed: true,
 	}
 ];
+
 const filledState = todosAdapter.upsertMany(emptyInitialState, defaultTodos);
 
 const todoSlice = createSlice({
