@@ -30,7 +30,8 @@
     "@typescript-eslint/eslint-plugin": "5.1.0",
     "@typescript-eslint/parser": "5.1.0",
     "eslint": "7.11.0",
-    "eslint-plugin-react": "7.26.1"
+    "eslint-plugin-react": "7.26.1",
+    "sass": "^1.43.3"
   },
   "optionalDependencies": {
     "babel-loader": "8.1.0"
