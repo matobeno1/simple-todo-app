@@ -85,9 +85,12 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 				checked={completed}
 				onChange={handleCheck}
 			/>
-			<div className={classNames(classes.content, {
-				[classes.completed]: completed,
-			})}>
+			<div
+				className={classNames(classes.content, {
+					[classes.completed]: completed,
+				})}
+				onDoubleClick={handleDoubleClick}
+			>
 				{isEditing ? (
 					<input
 						ref={ref}
@@ -102,7 +105,6 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					<span
 						tabIndex={0}
 						onKeyPress={handleTitleKeyPress}
-						onDoubleClick={handleDoubleClick}
 					>
 						{title}
 					</span>

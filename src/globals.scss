@@ -1,8 +1,8 @@
 :root {
-  --primary-color: #302AE6;
-  --secondary-color: #536390;
+  --primary-color: #EE5370;
+  --secondary-color: #061B51;
   --typography-color: rgba(0, 0, 0, 0.87);
-  --bg-color: #fff;
+  --bg-color: #FDFDFD;
   --border-color: #000;
 
   // Button
@@ -33,19 +33,10 @@ html {
   color: var(--typography-color);
   background-color: var(--bg-color);
   transition: background-color 150ms linear;
+  font-size: 24px;
 }
 
 input[type="text"] {
   color: var(--typography-color);
   background-color: var(--bg-color);
-}
-
-button {
-  background-color: var(--button-background);
-  cursor: pointer;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  border-radius: .25rem;
-  border-width: 1px;
 }

@@ -7,7 +7,7 @@ import classes from "./App.module.scss";
 
 const App: FunctionComponent = () => (
 	<div className={classes.root}>
-		<h1>Todo list</h1>
+		<h1>Tasks</h1>
 		<ThemeSwitcherComponent />
 		<TodoTitleInput />
 		<TodosList />
