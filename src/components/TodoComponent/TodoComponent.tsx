@@ -7,6 +7,9 @@ import React, {
 	useRef,
 	useState
 } from "react";
+import { Button } from "antd";
+import { CloseCircleOutlined } from "@ant-design/icons";
+
 import classes from "./TodoComponent.module.scss";
 import classNames from "classnames";
 
@@ -110,7 +113,13 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					</span>
 				)}
 			</div>
-			<button className={classes.closeButton} onClick={onDelete}>x</button>
+			<Button
+				type="primary"
+				size={"small"}
+				danger
+				className={classes.closeButton}
+				icon={<CloseCircleOutlined />}
+			/>
 		</div>
 	);
 };

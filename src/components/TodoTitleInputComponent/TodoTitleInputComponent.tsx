@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ChangeEventHandler, KeyboardEventHandler, useRef } from "react";
+import { Input, Button } from "antd";
 
 import classes from "./TodoTitleInputComponent.module.scss";
 
@@ -13,7 +14,7 @@ export const TodoTitleInputComponent: FunctionComponent<TodoTitleInputComponentP
 	onChange,
 	onSubmit,
 }) => {
-	const ref = useRef<HTMLInputElement>(null);
+	const ref = useRef<Input>(null);
 	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
 		onChange(e.target.value);
 	};
@@ -29,7 +30,7 @@ export const TodoTitleInputComponent: FunctionComponent<TodoTitleInputComponentP
 
 	return (
 		<div className={classes.root}>
-			<input
+			<Input
 				type="text"
 				placeholder={"Add a task..."}
 				className={classes.input}
@@ -39,7 +40,7 @@ export const TodoTitleInputComponent: FunctionComponent<TodoTitleInputComponentP
 				onKeyPress={handleKeyPress}
 				onChange={handleChange}
 			/>
-			<button onClick={handleSubmit}>Create</button>
+			<Button type="primary" onClick={handleSubmit}>Create</Button>
 		</div>
 	);
 };
