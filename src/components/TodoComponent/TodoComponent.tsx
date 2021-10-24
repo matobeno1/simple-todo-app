@@ -1,5 +1,6 @@
 import React, {
-	ChangeEventHandler, FocusEventHandler,
+	ChangeEventHandler,
+	FocusEventHandler,
 	FunctionComponent,
 	KeyboardEventHandler,
 	MouseEventHandler,
@@ -7,7 +8,7 @@ import React, {
 	useRef,
 	useState
 } from "react";
-import { Button } from "antd";
+import { Button, Checkbox } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
 import classes from "./TodoComponent.module.scss";
@@ -36,7 +37,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 	const [editedTitle, setEditedTitle] = useState(title);
 	const ref = useRef<HTMLInputElement>(null);
 
-	const handleCheck: ChangeEventHandler<HTMLInputElement> = () => {
+	const handleCheck = () => {
 		onCheck && onCheck();
 	};
 
@@ -82,9 +83,8 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 
 	return (
 		<div className={classes.root}>
-			<input
+			<Checkbox
 				className={classes.checkbox}
-				type="checkbox"
 				checked={completed}
 				onChange={handleCheck}
 			/>
@@ -117,6 +117,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 				type="primary"
 				size={"small"}
 				danger
+				onClick={onDelete}
 				className={classes.closeButton}
 				icon={<CloseCircleOutlined />}
 			/>
