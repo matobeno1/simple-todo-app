@@ -81,3 +81,7 @@ export const getAllTodosCount: Selector<IRootState, number> = (state) => (
 export const isCompleteAll: Selector<IRootState, boolean> = (state) => (
 	getCompleteTodosIds(state).length === getAllTodosCount(state)
 );
+
+export const isTodoListEmpty: Selector<IRootState, boolean> = (state) => (
+	getAllTodosCount(state) === 0
+);
