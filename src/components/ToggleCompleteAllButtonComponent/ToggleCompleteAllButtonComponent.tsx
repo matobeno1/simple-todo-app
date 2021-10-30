@@ -1,6 +1,23 @@
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { Button } from "antd";
+import { FormOutlined } from "@ant-design/icons";
 
-export const ToggleCompleteAllButtonComponent: FunctionComponent = () => (
-	<Button>Complete all</Button>
+export type ToggleCompleteAllButtonComponentProps = {
+	onClick: () => void;
+	/** Flag whether every todo is complete. */
+	isCompleteAll: boolean;
+};
+
+export const ToggleCompleteAllButtonComponent: FunctionComponent<ToggleCompleteAllButtonComponentProps> = ({
+	onClick,
+	isCompleteAll
+}) => (
+	<Button
+		onClick={onClick}
+		title={"Toggle all"}
+		type="primary"
+		size="middle"
+	>
+		{isCompleteAll ? "Uncomplete" : "Complete all"}
+	</Button>
 );

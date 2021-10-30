@@ -5,7 +5,7 @@ import {
 	PayloadAction,
 	Reducer,
 	nanoid,
-	EntityId
+	EntityId,
 } from "@reduxjs/toolkit";
 import { Todo, ITodosState, AddTodoActionPayloadType, TodoFilter } from "./types";
 
@@ -73,7 +73,7 @@ const todoSlice = createSlice({
 		delete: (state, action: PayloadAction<{todoId: EntityId}>) => {
 			const { todoId } = action.payload;
 			todosAdapter.removeOne(state, todoId);
-		}
+		},
 	}
 });
 
