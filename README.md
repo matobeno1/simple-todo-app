@@ -1,6 +1,8 @@
 # Simple todo app
 This project represents a simple todo app written in React.
 
+See the **[demo](https://matobeno1-sample-todo-app.netlify.app/)**.
+
 ## Usage
 Users can:
 - create todo
