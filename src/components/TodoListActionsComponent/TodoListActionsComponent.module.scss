@@ -2,3 +2,21 @@
   display: flex;
   margin-top: .5rem;
 }
+
+.root > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    &:nth-child(1) {
+      justify-content: left;
+    }
+
+    &:nth-child(2) {
+      flex: 2
+    }
+
+    &:nth-child(3) {
+      justify-content: right;
+    }
+}

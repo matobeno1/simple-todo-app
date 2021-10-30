@@ -7,8 +7,14 @@ import classes from "./TodoListActionsComponent.module.scss";
 
 export const TodoListActionsComponent: FunctionComponent = () => (
 	<div className={classes.root}>
-		<ToggleCompleteAllButton />
-		<TodosFilter />
-		<RemoveCompletedButton />
+		<div>
+			<ToggleCompleteAllButton />
+		</div>
+		<div>
+			<TodosFilter />
+		</div>
+		<div>
+			<RemoveCompletedButton />
+		</div>
 	</div>
 );
