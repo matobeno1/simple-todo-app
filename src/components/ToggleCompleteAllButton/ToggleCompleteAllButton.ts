@@ -5,16 +5,16 @@ import {
 import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from "react-redux";
 import { NoneProps } from "../../types";
 import { IRootState } from "../../store/types";
-import { isCompleteAll, isTodoListEmpty } from "../../modules/todos/selectors";
+import { areAllTodosComplete, isTodoListEmpty } from "../../modules/todos/selectors";
 
-type StateProps = Pick<ToggleCompleteAllButtonComponentProps, "isCompleteAll" | "noTodosAvailable">;
+type StateProps = Pick<ToggleCompleteAllButtonComponentProps, "areAllTodosComplete" | "noTodosAvailable">;
 type DispatchProps = {
-	onClick: (isCompleteAll: boolean) => void;
+	onClick: (areAllTodosComplete: boolean) => void;
 };
 type MergedProps = StateProps & DispatchProps & Pick<ToggleCompleteAllButtonComponentProps, "onClick">;
 
 const mapStateToProps: MapStateToProps<StateProps, NoneProps, IRootState> = (state) => ({
-	isCompleteAll: isCompleteAll(state),
+	areAllTodosComplete: areAllTodosComplete(state),
 	noTodosAvailable: isTodoListEmpty(state),
 });
 
@@ -30,7 +30,7 @@ const mergeProps: MergeProps<StateProps, DispatchProps, NoneProps, MergedProps> 
 	...stateProps,
 	...dispatchProps,
 	...ownProps,
-	onClick: () => onClick(stateProps.isCompleteAll)
+	onClick: () => onClick(stateProps.areAllTodosComplete)
 });
 
 export const ToggleCompleteAllButton = connect(mapStateToProps, mapDispatchToProps, mergeProps)(ToggleCompleteAllButtonComponent);

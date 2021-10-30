@@ -4,16 +4,16 @@ import { Button } from "antd";
 export type ToggleCompleteAllButtonComponentProps = {
 	onClick: () => void;
 	/** Flag whether every todo is complete. */
-	isCompleteAll: boolean;
+	areAllTodosComplete: boolean;
 	noTodosAvailable: boolean;
 };
 
 export const ToggleCompleteAllButtonComponent: FunctionComponent<ToggleCompleteAllButtonComponentProps> = ({
 	onClick,
-	isCompleteAll,
+	areAllTodosComplete,
 	noTodosAvailable,
 }) => {
-	let text = isCompleteAll ? "Uncomplete" : "Complete all";
+	let text = areAllTodosComplete ? "Uncomplete" : "Complete all";
 	if (noTodosAvailable) {
 		text = "All done";
 	}

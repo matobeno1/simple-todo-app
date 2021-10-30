@@ -78,7 +78,7 @@ export const getAllTodosCount: Selector<IRootState, number> = (state) => (
 	todosSelectors.selectTotal(getTodosEntityState(state))
 );
 
-export const isCompleteAll: Selector<IRootState, boolean> = (state) => (
+export const areAllTodosComplete: Selector<IRootState, boolean> = (state) => (
 	getCompleteTodosIds(state).length === getAllTodosCount(state)
 );
 
