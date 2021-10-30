@@ -7,7 +7,13 @@ import "antd/dist/antd.css";
 
 const App: FunctionComponent = () => (
 	<div className={classes.root}>
-		<h1>Tasks</h1>
+		<div className={classes.titleSection}>
+			<h1 className={classes.header}>Simple todo app</h1>
+			<p>A simple todo app written in React</p>
+			<a href="https://github.com/matobeno1/simple-todo-app" rel="noreferrer" target="_blank">
+				Github repo
+			</a>
+		</div>
 		<TodoTitleInput />
 		<TodosList />
 		<TodosFilter />
