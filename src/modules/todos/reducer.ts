@@ -81,7 +81,10 @@ const todoSlice = createSlice({
 			const { todoId } = action.payload;
 			todosAdapter.removeOne(state, todoId);
 		},
-
+		deleteAllCompleted: (state) => {
+			const completedIds: EntityId[] = state.ids.filter(id => state.entities[id]?.completed);
+			todosAdapter.removeMany(state, completedIds);
+		}
 	}
 });
 
@@ -116,6 +119,7 @@ export const {
 	toggleAllComplete: createToggleAllCompleteAction,
 	changeTitle: createChangeTitleAction,
 	delete: createDeleteTodoAction,
+	deleteAllCompleted: createDeleteAllCompletedAction,
 } = todoSlice.actions;
 export const {
 	change: createChangeNewTodoTitleAction

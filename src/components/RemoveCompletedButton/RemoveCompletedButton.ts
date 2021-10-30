@@ -3,6 +3,7 @@ import { RemoveCompletedButtonComponent, RemoveCompletedButtonComponentProps } f
 import { NoneProps } from "../../types";
 import { IRootState } from "../../store/types";
 import { getCompleteTodosAmount } from "../../modules/todos/selectors";
+import { createDeleteAllCompletedAction } from "../../modules/todos/reducer";
 
 type StateProps = Pick<RemoveCompletedButtonComponentProps, "noCompleteTodos">;
 type DispatchProps = Pick<RemoveCompletedButtonComponentProps, "onClick">;
@@ -12,7 +13,7 @@ const mapStateToProps: MapStateToProps<StateProps, NoneProps, IRootState> = (sta
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, NoneProps> = (dispatch) => ({
-	onClick: () => ({ type: "todo" })
+	onClick: () => dispatch(createDeleteAllCompletedAction())
 });
 
 export const RemoveCompletedButton = connect(mapStateToProps, mapDispatchToProps)(RemoveCompletedButtonComponent);
