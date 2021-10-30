@@ -1,4 +1,7 @@
-import React, { ChangeEventHandler, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
+import { Radio, RadioGroupProps } from "antd";
+import classes from "./TodosFilterComponent.module.scss";
+
 import { TodoFilter } from "../../modules/todos";
 
 export type TodosFilterComponentProps = {
@@ -6,33 +9,33 @@ export type TodosFilterComponentProps = {
 	onChange: (filter: TodoFilter) => void;
 };
 
-const FILTER_OPTIONS: Array<{title: string, value: TodoFilter}> = [
-	{ title: "All", value: TodoFilter.ALL },
-	{ title: "Complete", value: TodoFilter.COMPLETE },
-	{ title: "Incomplete", value: TodoFilter.INCOMPLETE },
+const FILTER_OPTIONS: Array<{label: string, value: TodoFilter}> = [
+	{ label: "All", value: TodoFilter.ALL },
+	{ label: "Complete", value: TodoFilter.COMPLETE },
+	{ label: "Incomplete", value: TodoFilter.INCOMPLETE },
 ];
 
 export const TodosFilterComponent: FunctionComponent<TodosFilterComponentProps> = ({
 	activeFilter,
 	onChange,
 }) => {
-	const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+	const handleChange: RadioGroupProps["onChange"] = (e) => {
 		onChange(e.target.value as TodoFilter);
 	};
 	return (
-		<div>
-			{FILTER_OPTIONS.map(({ value, title }) => (
-				<div key={value}>
-					<label htmlFor={value}>{title}</label>
-					<input
-						id={value}
-						checked={activeFilter === value}
-						type="radio"
-						value={value}
-						onChange={handleChange}
-					/>
-				</div>
-			))}
+		<div className={classes.root}>
+			<Radio.Group
+				value={activeFilter}
+				onChange={handleChange}
+				defaultValue={TodoFilter.ALL}
+				buttonStyle="solid"
+			>
+				{FILTER_OPTIONS.map(({ value, label }) => (
+					<Radio.Button key={value} value={value}>
+						{label}
+					</Radio.Button>
+				))}
+			</Radio.Group>
 		</div>
 	);
 };
