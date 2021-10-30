@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { EntityId } from "@reduxjs/toolkit";
+import { List } from "antd";
 
+import classes from "./TodosListComponent.module.css";
 import { Todo } from "../Todo";
 
 export type TodosListComponentProps = {
@@ -11,13 +13,18 @@ export const TodosListComponent: FunctionComponent<TodosListComponentProps> = ({
 	todosIds,
 }) => {
 	return (
-		<div>
-			{todosIds.map(todoId => (
-				<Todo
-					key={todoId}
-					todoId={todoId}
-				/>
-			))}
-		</div>
+		<List
+			size="small"
+			bordered
+			dataSource={todosIds}
+			renderItem={todoId => (
+				<div className={classes.item}>
+					<Todo
+						key={todoId}
+						todoId={todoId}
+					/>
+				</div>
+			)}
+		/>
 	);
 };

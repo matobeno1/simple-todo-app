@@ -106,6 +106,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 					/>
 				) : (
 					<span
+						className={classes.title}
 						tabIndex={0}
 						onKeyPress={handleTitleKeyPress}
 					>
