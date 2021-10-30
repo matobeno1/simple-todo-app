@@ -1,10 +1,18 @@
-import { connect, MapDispatchToProps } from "react-redux";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { RemoveCompletedButtonComponent, RemoveCompletedButtonComponentProps } from "../RemoveCompletedButtonComponent";
 import { NoneProps } from "../../types";
+import { IRootState } from "../../store/types";
+import { getCompleteTodosAmount } from "../../modules/todos/selectors";
 
-
+type StateProps = Pick<RemoveCompletedButtonComponentProps, "noCompleteTodos">;
 type DispatchProps = Pick<RemoveCompletedButtonComponentProps, "onClick">;
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, NoneProps>;
+const mapStateToProps: MapStateToProps<StateProps, NoneProps, IRootState> = (state) => ({
+	noCompleteTodos: getCompleteTodosAmount(state) === 0
+});
 
-export const RemoveCompletedButton = connect()();
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, NoneProps> = (dispatch) => ({
+	onClick: () => ({ type: "todo" })
+});
+
+export const RemoveCompletedButton = connect(mapStateToProps, mapDispatchToProps)(RemoveCompletedButtonComponent);
