@@ -9,7 +9,7 @@ import React, {
 	useState
 } from "react";
 import { Button, Checkbox } from "antd";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
 import classes from "./TodoComponent.module.scss";
 import classNames from "classnames";
@@ -120,7 +120,7 @@ export const TodoComponent: FunctionComponent<TodoComponentProps> = ({
 				danger
 				onClick={onDelete}
 				className={classes.closeButton}
-				icon={<CloseCircleOutlined />}
+				icon={<DeleteOutlined />}
 			/>
 		</div>
 	);

@@ -14,6 +14,7 @@ export const TodosListComponent: FunctionComponent<TodosListComponentProps> = ({
 }) => {
 	return (
 		<List
+			className={classes.root}
 			size="small"
 			bordered
 			dataSource={todosIds}

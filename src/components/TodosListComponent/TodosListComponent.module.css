@@ -1,3 +1,7 @@
+.root {
+  margin-bottom: 1rem;
+}
+
 .item {
   display: flex;
   flex-direction: row;
