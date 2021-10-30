@@ -5,7 +5,7 @@ import {
 	PayloadAction,
 	Reducer,
 	nanoid,
-	EntityId,
+	EntityId, Update,
 } from "@reduxjs/toolkit";
 import { Todo, ITodosState, AddTodoActionPayloadType, TodoFilter } from "./types";
 
@@ -57,6 +57,13 @@ const todoSlice = createSlice({
 				});
 			}
 		},
+		toggleAllComplete: (state, action: PayloadAction<{areAllTodosComplete: boolean}>) => {
+			const updates: Update<Todo>[] = state.ids.map(todoId => ({ id: todoId, changes: {
+				id: todoId,
+				completed: !action.payload.areAllTodosComplete
+			} }));
+			todosAdapter.updateMany(state, updates);
+		},
 		changeTitle: (state, action: PayloadAction<{title: string, todoId: EntityId}>) => {
 			const { todoId, title } = action.payload;
 			if (!title) {
@@ -74,6 +81,7 @@ const todoSlice = createSlice({
 			const { todoId } = action.payload;
 			todosAdapter.removeOne(state, todoId);
 		},
+
 	}
 });
 
@@ -105,6 +113,7 @@ export const reducer: Reducer<ITodosState> = combineReducers({
 export const {
 	add: createAddTodoAction,
 	toggleComplete: createToggleCompleteAction,
+	toggleAllComplete: createToggleAllCompleteAction,
 	changeTitle: createChangeTitleAction,
 	delete: createDeleteTodoAction,
 } = todoSlice.actions;

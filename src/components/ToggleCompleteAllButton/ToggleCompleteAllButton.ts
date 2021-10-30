@@ -6,6 +6,7 @@ import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from "react-
 import { NoneProps } from "../../types";
 import { IRootState } from "../../store/types";
 import { areAllTodosComplete, isTodoListEmpty } from "../../modules/todos/selectors";
+import { createToggleAllCompleteAction } from "../../modules/todos/reducer";
 
 type StateProps = Pick<ToggleCompleteAllButtonComponentProps, "areAllTodosComplete" | "noTodosAvailable">;
 type DispatchProps = {
@@ -19,7 +20,9 @@ const mapStateToProps: MapStateToProps<StateProps, NoneProps, IRootState> = (sta
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, NoneProps> = (dispatch) => ({
-	onClick: (complete) => dispatch({ type: "f", complete })
+	onClick: (areAllTodosComplete) => dispatch(createToggleAllCompleteAction({
+		areAllTodosComplete
+	}))
 });
 
 const mergeProps: MergeProps<StateProps, DispatchProps, NoneProps, MergedProps> = (
